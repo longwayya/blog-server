@@ -12,11 +12,13 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var articlesRouter = require('./routes/articles');
-articlesRouter
+var adminRouter = require('./routes/admin');
+
+
+
 var app = express();
 
 app.use(cors());
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,6 +36,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/articles', articlesRouter);
+app.use('/admin', adminRouter);
 
 
 
