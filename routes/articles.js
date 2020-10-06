@@ -1,18 +1,22 @@
 var express = require('express');
 var router = express.Router();
 
-const { getArticlelist, getArticledetail, addArticle, deleteArticle, updateArticle } = require('../lib/mysql');
+const { getArticlelist, getArticledetail, addArticle, deleteArticle, updateArticle, getHotArticlelist, increaseLooktimes } = require('../lib/mysql');
 
 /* GET users listing. */
 router.get('/list', function (req, res, next) {
-
   getArticlelist(req.query).then(resource => {
     res.json(resource)
   })
 });
 
+router.get('/hot', function (req, res, next) {
+  getHotArticlelist(req.query).then(resource => {
+    res.json(resource)
+  })
+});
+
 router.get('/detail', function (req, res, next) {
-  console.log(req.query)
   getArticledetail(req.query.id).then(resource => {
     res.json(resource[0])
   })
@@ -37,5 +41,13 @@ router.delete('/delete', function (req, res, next) {
   })
 });
 
+
+router.post('/looktimes', function (req, res, next) {
+  if (req.body.id) {
+    increaseLooktimes(req.body.id).then(resource => {
+      res.json({ type: "success" })
+    })
+  }
+})
 
 module.exports = router;
