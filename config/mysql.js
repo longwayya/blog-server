@@ -1,7 +1,7 @@
 var config = {
   host: 'dtune.top',
   user: 'root',
-  password: '',
+  password: 'toor',
   database: 'blog'
 }
 module.exports = config;
