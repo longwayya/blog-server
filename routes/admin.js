@@ -11,7 +11,8 @@ router.post('/uploadimg', function (req, res, next) {
     console.log(fields, files, 'fields2')
     if (err) {
     } else {
-      res.json({ imgSrc: files.image[0].path.replace("public\\", "") })
+      console.log(files.image[0].path.replace("public\\", ""))
+      res.json({ imgSrc: files.image[0].path.replace("public\\", "").replace("\\", "/") })
     }
   });
 });
